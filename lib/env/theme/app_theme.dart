@@ -1,37 +1,42 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryColor = Color(0xff00A151);
-  static const Color secondaryColor = Color(0xFf8edd65);
-  static const Color tertiaryColor = Color(0xFF076a39);
-  static const Color cuarternaryColor = Color(0xFF56c271);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color bordergrey = Color(0xFFB1B1B1);
-  static const Color hinText = Color(0xFFA7A9AC);
-  static const Color transparent = Color(0x00000000);
-  static const Color error = Color(0xffF94838);
-  static const Color colorButton = Color(0xFF0198fd);
-  static const Color backgroundLayout = Color(0xFFF6F6F6);
-  static const Color textColor = Color(0xFF97999b);
-  static const Color textInfoColor = Color(0xFF7C7C7C);
-  static const Color colorTextForm = Color(0xff5B5B5B);
-  static const Color caution = Color(0xffffcf54);
-  static const Color purple = Color(0xFF8819DF);
-  static const Color pink = Color(0xFFDF1995);
-  static const Color gray = Color(0xFFD1D3D4);
-  static const Color black = Color(0xFF000000);
-  static const Color cardBackground = Color(0xFFF7F7F7);
-  static const Color backgroundTextForm = Color(0xFFF6F5F5);
+  static const Color primaryColor = Color(0xFF0D47A1);    // Azul profundo (Confianza/Salud)
+  static const Color secondaryColor = Color(0xFF42A5F5);  // Azul vibrante (Acciones/Botones)
+  static const Color tertiaryColor = Color(0xFF1976D2);   // Azul medio (Resaltados)
+  static const Color accentColor = Color(0xFF00BFA5);     // Verde azulado (Para cuando cumples un macro)
 
-  // * COLOR DE LAS TARJETAS
-  static const Color textCard = Color(0xFF57636c);
-  static const Color softCardBackground = Color(0xffF2F2F2);
-  static const Color colorCardSchedule = Color.fromARGB(255, 178, 187, 255);
-  static const Color textColorSupport = Color(0xFF12151c);
-  static const Color softGrey = Color(0xFFF5F5F5);
-  static const Color softGrey2 = Color(0xffE4E4E4);
-  static const Color softGrey3 = Color(0xffF8F8F8);
-  static const Color sideCardOrange = Color(0xFFF4A306);
+  // * BÁSICOS
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF121212);           // Un negro más suave para vista cansada
+  static const Color transparent = Color(0x00000000);
+
+  // * ESTADOS (Claves en nutrición)
+  static const Color success = Color(0xFF4CAF50);         // Meta cumplida
+  static const Color error = Color(0xFFE53935);           // Exceso de calorías
+  static const Color caution = Color(0xFFFFA000);         // Alerta (Cerca del límite)
+  static const Color energy = Color(0xFFFF6D00);          // Naranja (Para el hambre/Carbohidratos)
+
+  // * FONDOS Y LAYOUT
+  static const Color backgroundLayout = Color(0xFFF8FAFC); // Gris muy azulado y limpio
+  static const Color cardBackground = Color(0xFFFFFFFF);
+  static const Color softGrey = Color(0xFFF1F5F9);        // Fondo de inputs o botones secundarios
+
+  // * TEXTOS
+  static const Color textColor = Color(0xFF1E293B);       // Azul oscuro casi negro (Legibilidad)
+  static const Color textInfoColor = Color(0xFF64748B);   // Gris azulado para detalles
+  static const Color hintText = Color(0xFF94A3B8);
+  static const Color colorTextForm = Color(0xFF334155);
+
+  // * MACROS (Colores específicos para gráficas)
+  static const Color proteinColor = Color(0xFF2563EB);    // Azul (Proteína)
+  static const Color carbsColor = Color(0xFFF59E0B);      // Amarillo/Naranja (Carbohidratos)
+  static const Color fatsColor = Color(0xFFEC4899);       // Rosa/Fucsia (Grasas)
+
+  // * TARJETAS Y BORDES
+  static const Color borderGrey = Color(0xFFE2E8F0);
+  static const Color softCardBackground = Color(0xFFF8FAFC);
+  static const Color shadowColor = Color(0x0A000000);   
 
   // * COLORES
 static const Color color1 = Color(0xFFD1C9FF); // Lavanda suave

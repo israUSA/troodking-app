@@ -5,7 +5,7 @@ import 'package:troodking_app/home/page/home_page.dart';
 
 
 class AppRoutes{
-  static const initialRoute = '/splash';
+  static const initialRoute = '/home';
 
   static Map<String, Widget Function(BuildContext)> routes ={
     // '/splash' : (_) =>  const SplashScreen(),

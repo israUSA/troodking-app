@@ -39,24 +39,22 @@ class AppTheme {
   static const Color shadowColor = Color(0x0A000000);   
 
   // * COLORES
-static const Color color1 = Color(0xFFD1C9FF); // Lavanda suave
-static const Color color2 = Color(0xFFFFD8A8); // Naranja melocotón
-static const Color color3 = Color(0xFFFFC5C5); // Rosa coral pálido
-static const Color color4 = Color(0xFFFFF9C4); // Amarillo crema
-static const Color color5 = Color(0xFFC1E7D1); // Verde menta
-static const Color color6 = Color(0xFFA2D2FF); // Azul cielo claro 
-
+  static const Color color1 = Color(0xFFD1C9FF); // Lavanda suave
+  static const Color color2 = Color(0xFFFFD8A8); // Naranja melocotón
+  static const Color color3 = Color(0xFFFFC5C5); // Rosa coral pálido
+  static const Color color4 = Color(0xFFFFF9C4); // Amarillo crema
+  static const Color color5 = Color(0xFFC1E7D1); // Verde menta
+  static const Color color6 = Color(0xFFA2D2FF); // Azul cielo claro 
 
   // * ASSETS
   // static const String logoPrincipal = "assets/logo.png";
   // static const String camion = "assets/servitruck.png";
-  
 
   //Icons
   // static const String logoIcon = "assets/logo_icon.svg";
-
-
   static const String icon404Path = "assets/404.png";
+  static const String categoriesIcon = "assets/categories.svg";
+  static const String buyFoodIcon = "assets/food_money.svg";
 
  
 

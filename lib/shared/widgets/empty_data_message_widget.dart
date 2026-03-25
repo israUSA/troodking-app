@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/widgets/text.dart';

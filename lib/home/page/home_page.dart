@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     return LayoutWidget(
+      requiredStack: true,
       child: Column(
         children: [
           SeparateItemsWidget(

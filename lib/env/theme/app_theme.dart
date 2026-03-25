@@ -53,6 +53,7 @@ class AppTheme {
   //Icons
   // static const String logoIcon = "assets/logo_icon.svg";
   static const String icon404Path = "assets/404.png";
+  static const String plateIcon = "assets/plate.png";
   static const String categoriesIcon = "assets/categories.svg";
   static const String buyFoodIcon = "assets/food_money.svg";
 

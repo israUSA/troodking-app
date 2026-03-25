@@ -4,12 +4,18 @@ import 'package:troodking_app/env/environment.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
+import 'package:troodking_app/shared/widgets/alert_modal.dart';
+import 'package:troodking_app/shared/widgets/button_navigation_widget.dart';
+import 'package:troodking_app/shared/widgets/page_modal.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
 
 class LayoutWidget extends StatefulWidget {
-  const LayoutWidget({super.key, required this.child});
+  const LayoutWidget({super.key, required this.child, this.nameInterceptor, required this.requiredStack, this.keyDismiss});
 
   final Widget child;
+  final String? nameInterceptor;
+  final bool requiredStack;
+  final GlobalKey<State<StatefulWidget>>? keyDismiss;
 
   @override
   State<LayoutWidget> createState() => _LayoutWidgetState();
@@ -75,6 +81,9 @@ class _LayoutWidgetState extends State<LayoutWidget> {
               ),
             ],
           ),
+          const ButtonNavigationWidget(),
+          const PageModal(),
+          const AlertModal(),
         ],
       ),
     );

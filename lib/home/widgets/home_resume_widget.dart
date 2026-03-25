@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
@@ -25,23 +26,17 @@ class _HomeResumeWidgetState extends State<HomeResumeWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        
         TitleWidget(title: 'Resúmen', fontSize: responsive.dp(2.3),  fontWeight: FontWeight.bold,),
-
-
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: AppTheme.primaryColor,
-              width: 2
-            )
+        SizedBox(height: responsive.hp(2),),
+        DottedBorder(
+          options: RectDottedBorderOptions(
+            dashPattern: [10, 5],
+            strokeWidth: 3,
+            color: AppTheme.carbsColor
           ),
-          child: EmptyDataMessageWidget(message: 'Crea una categoría e ingresa un producto')
-,
+          child: EmptyDataMessageWidget(message: 'Crea una categoría e ingresa un producto'),
         )
-        
-        
-
-
       ],
     );
   }

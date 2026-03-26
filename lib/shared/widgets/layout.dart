@@ -80,7 +80,6 @@ class _LayoutWidgetState extends State<LayoutWidget> {
                       visible: widget.backPageView,
                       child: IconButton(
                         onPressed: () {
-                          log('si tu estas pa mi');
                           widget.keyDismiss != null
                           ? fp.dismissPage(key: widget.keyDismiss!)
                           : null;

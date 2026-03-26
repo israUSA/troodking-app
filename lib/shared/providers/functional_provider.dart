@@ -49,7 +49,7 @@ class FunctionalProvider extends ChangeNotifier {
   }
 
   dismissPage({required GlobalKey key}) {
-    pages.removeWhere((alert) => key == alert.key);
+    pages.removeWhere((page) => key == page.key);
     currentPage = '';
     notifyListeners();
   }

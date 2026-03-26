@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
@@ -33,7 +31,6 @@ class _ButtonNavigationWidgetState extends State<ButtonNavigationWidget> {
                 onTap: () {
                   setState(() {});
                 },
-               
                 child: Image.asset(
                     AppTheme.plateIcon,
                     width: responsive.dp(5),

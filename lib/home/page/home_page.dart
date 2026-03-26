@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<FunctionalProvider>(
       builder: (context, fp, child) {
         return LayoutWidget(
+        nameInterceptor: 'homePage',
         requiredStack: true,
         child: Column(
           children: [
@@ -36,8 +37,13 @@ class _HomePageState extends State<HomePage> {
                   color: AppTheme.proteinColor,
                   onPressed: () {
                     final keyCategoriesPage = GlobalHelper.genKey();
-                    fp.addPage(key: keyCategoriesPage, content: CategoriesPage());
-                    
+                      fp.addPage(
+                        key: keyCategoriesPage,
+                        content: CategoriesPage(
+                          key: keyCategoriesPage,
+                          keyDismissPage: keyCategoriesPage,
+                        ),
+                      );   
                   },
                 ),
                 BackgroundCardWidget(

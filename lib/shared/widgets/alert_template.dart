@@ -1,9 +1,14 @@
+import 'dart:ui';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
+import 'package:troodking_app/shared/models/button_type_enum.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
+import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
+import 'package:troodking_app/shared/widgets/text_button_widget.dart';
 
 class AlertGeneric extends StatefulWidget {
   final bool dismissable;
@@ -91,9 +96,13 @@ class _AlertTemplateState extends State<AlertTemplate> {
         animate: false,
         duration: const Duration(milliseconds: 200),
         child: Scaffold(
-          backgroundColor: Colors.black45,
+        backgroundColor: Colors.black45.withValues(alpha: 0.2),
           body: Stack(
             children: [
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                child: Container(color: Colors.black.withValues(alpha: 0.2)),
+              ),
               GestureDetector(
                 onTap: () {
                   final fp =
@@ -131,5 +140,50 @@ class _AlertTemplateState extends State<AlertTemplate> {
             ],
           ),
         ));
+  }
+}
+
+class AlertAddCategorieWidget extends StatefulWidget {
+  const AlertAddCategorieWidget({super.key, required this.confirm, required this.keyToClose});
+  
+  final GlobalKey keyToClose;
+  final void Function() confirm;
+
+
+  @override
+  State<AlertAddCategorieWidget> createState() => _AlertAddCategorieWidgetState();
+}
+
+class _AlertAddCategorieWidgetState extends State<AlertAddCategorieWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+    return Consumer<FunctionalProvider>(
+      builder: (context, fp, child) {
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButtonWidget(
+                  onPressed: () {
+                    fp.dismissAlert(key: widget.keyToClose);
+                  }, 
+                  nameButton: 'Cancelar'),
+                SizedBox(width: responsive.wp(1)),
+                FilledButtonWidget(
+                  typeButton: WidgetTypeEnum.confirm,
+                  onPressed: widget.confirm,
+                  width: responsive.wp(5),
+                  height: responsive.isTablet ? responsive.hp(4) : 42,
+                  borderRadius: 20,
+                  text: 'Confirmar',
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }

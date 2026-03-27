@@ -9,6 +9,8 @@ import 'package:troodking_app/shared/models/button_type_enum.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/text_button_widget.dart';
+import 'package:troodking_app/shared/widgets/text_form_field_widget.dart';
+import 'package:troodking_app/shared/widgets/title.dart';
 
 class AlertGeneric extends StatefulWidget {
   final bool dismissable;
@@ -155,33 +157,126 @@ class AlertAddCategorieWidget extends StatefulWidget {
 }
 
 class _AlertAddCategorieWidgetState extends State<AlertAddCategorieWidget> {
+
+  final List<String> foodEmojis = [
+    '🍎', '🍐', '🍊', '🍋',
+    '🍇','🍓','🫐','🍈','🍒','🍑','🥭',
+    '🍍','🥥','🍅','🍆','🥑','🥦',
+    '🥬', '🥒', '🌽', '🥕','🍝' , '🧄', '🧅',
+    '🥔', '🍠', '🍞', '🥖',
+    '🧀',
+    '🥚',
+    '🧈',
+    '🧇',
+    '🥓',
+    '🥩',
+    '🍗',
+    '🌭',
+    '🍕',
+    '🫓',
+    '🥪',
+    '🥙',
+    '🧆',
+    '🌮',
+    '🥗',
+    '🥘',
+    '🫕',
+    '🥣',
+    '🍝',
+    '🍜',
+    '🍲',
+    '🍛',
+    '🍣',
+    '🍱',
+    '🥟',
+    '🦪',
+    '🍤',
+    '🍙',
+    '🍚',
+    '🍘',
+    '🥠',
+    '🥮',
+    '🍧',
+    '🍨',
+    '🍦',
+    '🥧',
+    '🧁',
+    '🍰',
+    '🎂',
+    '🍮',
+    '🍫',
+    '🍿',
+    '🍩',
+    '🍪',
+    '🥜',
+    '🥛',
+    '🍾',
+    '🍷',
+    '🍺',
+    '🧃',
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     return Consumer<FunctionalProvider>(
       builder: (context, fp, child) {
-        return Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButtonWidget(
-                  onPressed: () {
-                    fp.dismissAlert(key: widget.keyToClose);
-                  }, 
-                  nameButton: 'Cancelar'),
-                SizedBox(width: responsive.wp(1)),
-                FilledButtonWidget(
-                  typeButton: WidgetTypeEnum.confirm,
-                  onPressed: widget.confirm,
-                  width: responsive.wp(5),
-                  height: responsive.isTablet ? responsive.hp(4) : 42,
-                  borderRadius: 20,
-                  text: 'Confirmar',
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TitleWidget(title: 'Seleccione un ícono'),
+              SizedBox(
+                height: responsive.hp(30),
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(10),
+                  shrinkWrap: true,
+                  physics: AlwaysScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5, 
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemCount: foodEmojis.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () => Navigator.pop(context, foodEmojis[index]),
+                      child: Center(
+                        child: Text(
+                          foodEmojis[index],
+                          style: const TextStyle(fontSize: 42),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
-          ],
+              ),
+              TextFormFieldWidget(
+                hintText: 'Nombre de la categoría',
+              ),
+          
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButtonWidget(
+                    onPressed: () {
+                      fp.dismissAlert(key: widget.keyToClose);
+                    }, 
+                    nameButton: 'Cancelar'),
+                  SizedBox(width: responsive.wp(1)),
+                  FilledButtonWidget(
+                    typeButton: WidgetTypeEnum.confirm,
+                    onPressed: widget.confirm,
+                    width: responsive.wp(5),
+                    height: responsive.isTablet ? responsive.hp(4) : 42,
+                    borderRadius: 20,
+                    text: 'Confirmar',
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
     );

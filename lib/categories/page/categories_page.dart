@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:troodking_app/categories/page/category_item_page.dart';
 import 'package:troodking_app/categories/widgets/categories_card_widget.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
@@ -102,8 +103,15 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   itemBuilder: (context, index) {
                     return CategoriesCardWidget(
                       onPressed: () {
-                        
-                      }, 
+                        final keyCategorieItemPage = GlobalHelper.genKey();
+                        fp.addPage(
+                          key: keyCategorieItemPage,
+                          content: CategoryItemPage(
+                            key: keyCategorieItemPage,
+                            keyDismissPage: keyCategorieItemPage,
+                          ),
+                        );
+                      },
                       title: 'Pasta', 
                       emojiIcon: '🍝');
                   },)

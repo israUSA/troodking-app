@@ -23,9 +23,7 @@ class _CategoriesCardWidgetState extends State<CategoriesCardWidget> {
     return Card(
       color: AppTheme.white,
       child: InkWell(
-        onTap: () {
-          
-        },
+        onTap: widget.onPressed,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

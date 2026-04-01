@@ -38,8 +38,8 @@ class _FilledButtonWidgetState extends State<FilledButtonWidget> {
       style: ButtonStyle(
         minimumSize: WidgetStateProperty.all<Size>(
           Size(
-            responsive.wp(40),
-            responsive.hp(7),
+            responsive.wp(30),
+            responsive.hp(5),
           ),
         ),
         maximumSize: WidgetStateProperty.all<Size>(

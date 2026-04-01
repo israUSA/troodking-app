@@ -47,7 +47,6 @@ class AppTheme {
   static const Color cautionCardSoft = Color(0xFFFEE685);
   static const Color errorCard = Color(0xFFFFA2A2);
   static const Color confirmCard = Color(0xFF8EC5FF);
-  static const Color confirmCardSoft = Color(0xFFBEDBFF);
   static const Color textCard = Color(0xFF57636c);
   static const Color colorCardSchedule = Color.fromARGB(255, 178, 187, 255);
   static const Color textColorSupport = Color(0xFF12151c);

@@ -239,10 +239,13 @@ class _AlertAddCategorieWidgetState extends State<AlertAddCategorieWidget> {
                   },
                 ),
               ),
+              SizedBox(height: responsive.hp(1),),
+              
               TextFormFieldWidget(
                 hintText: 'Nombre de la categoría',
               ),
-          
+              
+              SizedBox(height: responsive.hp(1),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -257,13 +260,73 @@ class _AlertAddCategorieWidgetState extends State<AlertAddCategorieWidget> {
                     onPressed: widget.confirm,
                     width: responsive.wp(5),
                     height: responsive.isTablet ? responsive.hp(4) : 42,
-                    borderRadius: 20,
+                    borderRadius: 10,
                     text: 'Confirmar',
                   ),
                 ],
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+}
+
+class AlertDeleteCategorieWidget extends StatefulWidget {
+  const AlertDeleteCategorieWidget({super.key, required this.keyToClose, required this.confirm});
+  
+  final GlobalKey keyToClose;
+  final void Function() confirm;
+
+
+  @override
+  State<AlertDeleteCategorieWidget> createState() => _AlertDeleteCategorieWidgetState();
+}
+
+class _AlertDeleteCategorieWidgetState extends State<AlertDeleteCategorieWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+    return Consumer<FunctionalProvider>(
+      builder: (context, fp, child) {
+        return Column(
+        children: [
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: responsive.dp(2.1),
+                color: AppTheme.black
+              ),
+              children: [
+                TextSpan(text: '¿Desea '),
+                TextSpan(text: ' eliminar ', style: TextStyle(color: AppTheme.error, fontWeight: FontWeight.bold)),
+                TextSpan(text: 'esta categoría?'), 
+              ]
+            )),
+      
+          SizedBox(height: responsive.hp(1),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButtonWidget(
+                      nameButton: 'Cancelar',
+                  onPressed: () {
+                    fp.dismissAlert(key: widget.keyToClose);
+                  },
+                ),
+                SizedBox(width: responsive.wp(1)),
+                    FilledButtonWidget(
+                      typeButton: WidgetTypeEnum.cancel,
+                      onPressed: widget.confirm,
+                      width: responsive.wp(5),
+                      height: responsive.isTablet ? responsive.hp(4) : 42,
+                      borderRadius: 10,
+                      text: 'Eliminar',
+                    ),
+              ],
+            ),
+          ],
         );
       },
     );

@@ -102,6 +102,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     ), 
                   itemBuilder: (context, index) {
                     return CategoriesCardWidget(
+                      title: 'Pasta', 
+                      emojiIcon: '🍝',
                       onPressed: () {
                         final keyCategorieItemPage = GlobalHelper.genKey();
                         fp.addPage(
@@ -112,9 +114,23 @@ class _CategoriesPageState extends State<CategoriesPage> {
                           ),
                         );
                       },
-                      title: 'Pasta', 
-                      emojiIcon: '🍝');
-                  },)
+                      onDelete: () {
+                        final keyDeleteCategorieAlert = GlobalHelper.genKey();
+                        fp.showAlert(
+                          key: keyDeleteCategorieAlert,
+                          content: AlertGeneric(
+                            content: AlertDeleteCategorieWidget(
+                              keyToClose: keyDeleteCategorieAlert,
+                              confirm: () {
+                                
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
         ),

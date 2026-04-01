@@ -15,7 +15,7 @@ extension ButtonTypeColor on WidgetTypeEnum {
       case WidgetTypeEnum.normal:
         return AppTheme.textSecondary;
       case WidgetTypeEnum.confirm:
-        return AppTheme.confirmCardSoft;
+        return AppTheme.confirmCard;
       case WidgetTypeEnum.sucess:
         return AppTheme.sucessBorder;
       case WidgetTypeEnum.warning:
@@ -36,7 +36,7 @@ extension ButtonTypeColor on WidgetTypeEnum {
       case WidgetTypeEnum.warning:
         return AppTheme.textColor;
       case WidgetTypeEnum.cancel:
-        return AppTheme.error;
+        return AppTheme.white;
     }
   }
 }

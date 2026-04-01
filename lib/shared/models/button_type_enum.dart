@@ -17,7 +17,7 @@ extension ButtonTypeColor on WidgetTypeEnum {
       case WidgetTypeEnum.confirm:
         return AppTheme.confirmCard;
       case WidgetTypeEnum.sucess:
-        return AppTheme.sucessBorder;
+        return AppTheme.success;
       case WidgetTypeEnum.warning:
         return AppTheme.cautionCardSoft;
       case WidgetTypeEnum.cancel:
@@ -32,7 +32,7 @@ extension ButtonTypeColor on WidgetTypeEnum {
       case WidgetTypeEnum.confirm:
         return AppTheme.white;
       case WidgetTypeEnum.sucess:
-        return AppTheme.success;
+        return AppTheme.white;
       case WidgetTypeEnum.warning:
         return AppTheme.textColor;
       case WidgetTypeEnum.cancel:

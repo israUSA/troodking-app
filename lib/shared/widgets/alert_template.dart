@@ -258,8 +258,6 @@ class _AlertAddCategorieWidgetState extends State<AlertAddCategorieWidget> {
                   FilledButtonWidget(
                     typeButton: WidgetTypeEnum.confirm,
                     onPressed: widget.confirm,
-                    width: responsive.wp(5),
-                    height: responsive.isTablet ? responsive.hp(4) : 42,
                     borderRadius: 10,
                     text: 'Confirmar',
                   ),
@@ -302,8 +300,9 @@ class _AlertDeleteCategorieWidgetState extends State<AlertDeleteCategorieWidget>
                 TextSpan(text: '¿Desea '),
                 TextSpan(text: ' eliminar ', style: TextStyle(color: AppTheme.error, fontWeight: FontWeight.bold)),
                 TextSpan(text: 'esta categoría?'), 
-              ]
-            )),
+              ],
+              ),
+            ),
       
           SizedBox(height: responsive.hp(1),),
                 Row(
@@ -319,9 +318,7 @@ class _AlertDeleteCategorieWidgetState extends State<AlertDeleteCategorieWidget>
                     FilledButtonWidget(
                       typeButton: WidgetTypeEnum.cancel,
                       onPressed: widget.confirm,
-                      width: responsive.wp(5),
-                      height: responsive.isTablet ? responsive.hp(4) : 42,
-                      borderRadius: 10,
+                   borderRadius: 10,
                       text: 'Eliminar',
                     ),
               ],

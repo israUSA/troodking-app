@@ -6,8 +6,10 @@ import 'package:troodking_app/categories/widgets/categories_card_widget.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
+import 'package:troodking_app/shared/models/button_type_enum.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/alert_template.dart';
+import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/icon_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
@@ -43,10 +45,11 @@ class _CategoriesPageState extends State<CategoriesPage> {
             mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButtonWidget(
-                buttonText: 'Agregar Categoría',
-                iconData: Icons.add,
-                onPress: () {
+              FilledButtonWidget(
+                text: 'Agregar Categoría',
+                typeButton: WidgetTypeEnum.sucess,
+                icon: Icons.add,
+                onPressed: () {
                   final keyAddCategorieAlert = GlobalHelper.genKey();
                   fp.showAlert(
                     key: keyAddCategorieAlert, 
@@ -109,22 +112,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         fp.addPage(
                           key: keyCategorieItemPage,
                           content: CategoryItemPage(
+                            title: 'Pasta',
                             key: keyCategorieItemPage,
                             keyDismissPage: keyCategorieItemPage,
-                          ),
-                        );
-                      },
-                      onDelete: () {
-                        final keyDeleteCategorieAlert = GlobalHelper.genKey();
-                        fp.showAlert(
-                          key: keyDeleteCategorieAlert,
-                          content: AlertGeneric(
-                            content: AlertDeleteCategorieWidget(
-                              keyToClose: keyDeleteCategorieAlert,
-                              confirm: () {
-                                
-                              },
-                            ),
                           ),
                         );
                       },

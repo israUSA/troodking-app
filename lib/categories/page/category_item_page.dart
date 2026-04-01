@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
+import 'package:troodking_app/shared/models/button_type_enum.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
+import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
+import 'package:troodking_app/shared/widgets/icon_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 
 class CategoryItemPage extends StatefulWidget {
-  const CategoryItemPage({super.key, required this.keyDismissPage});
+  const CategoryItemPage({super.key, required this.keyDismissPage, required this.title});
 
+  final String title;
   final GlobalKey keyDismissPage;
 
   @override
@@ -21,16 +26,43 @@ class _CategoryItemPageState extends State<CategoryItemPage> {
       builder: (context, fp, child) {
       return LayoutWidget(
         keyDismiss: widget.keyDismissPage,
-        title: 'Productos',
+        title: widget.title,
         requiredStack: false,
         backPageView: true,
         nameInterceptor: 'categoriesProductsPage',
         child: Column(
           children: [
 
-          ],
-        ), 
+            InkWell(
+              onTap: () {
+                
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: responsive.dp(2), horizontal: responsive.dp(8)),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(responsive.dp(2)),
+                  border: Border.all( 
+                    color: AppTheme.carbsColor,
+                    width: responsive.dp(1))
+                ),
+                child: Icon(Icons.qr_code, size: responsive.dp(15),),
+              ),
+            ),
+
+          SizedBox(height: responsive.hp(10),),            
+
+            FilledButtonWidget(
+              text: 'Eliminar Categoría',
+              icon: Icons.delete_forever,
+              typeButton: WidgetTypeEnum.cancel,
+              onPressed: () {
+                
+              },
+              ),
+            ],
+          ),
         );
-    },);
+      },
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
+import 'package:troodking_app/shared/widgets/title.dart';
 
 class CategoryItemCardWidget extends StatefulWidget {
   const CategoryItemCardWidget({super.key, required this.onDelete});
@@ -16,7 +17,17 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     return Card(
+      color: AppTheme.white,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.blue, // Color del borde
+          width: 2.0, // Grosor del borde
+        ),
+        borderRadius: BorderRadius.circular(10.0), // Esquinas redondeadas
+      ),
+
       child: Stack(
+        alignment: AlignmentGeometry.center,
         children: [
           Positioned(
             top: 3,
@@ -34,9 +45,14 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
               ),
             ),
           ),
+          Column(
+            children: [
+              Image.network('https://veggiedeli.com.ec/wp-content/uploads/2022/10/spaghetti-producto-VegguiDeli.jpg'),
+              TitleWidget(title: 'Pasta 1' ),
+            ],
+          ),
         ],
       ),
-
     );
   }
 }

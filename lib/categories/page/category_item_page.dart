@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:troodking_app/categories/widgets/category_item_card_widget.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
@@ -51,7 +52,36 @@ class _CategoryItemPageState extends State<CategoryItemPage> {
               ),
             ),
 
-          SizedBox(height: responsive.hp(10),),            
+              GridView.count(
+                shrinkWrap: true, 
+                crossAxisCount: 3,
+                children: [
+                  CategoryItemCardWidget(
+                    onDelete: () {
+                    
+                  },),
+                  CategoryItemCardWidget(
+                    onDelete: () {
+                    
+                  },),
+                  CategoryItemCardWidget(
+                    onDelete: () {
+                    
+                  },),
+                ],
+                
+                // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //   crossAxisCount: 3,
+                //   mainAxisSpacing: 10,
+                //   crossAxisSpacing: 10,
+                // ),
+                // itemBuilder: (context, index) {
+                //   return CategoryItemCardWidget(
+                //     onDelete: () {
+                    
+                //   },);
+                // },
+              )   ,     
 
             FilledButtonWidget(
               text: 'Eliminar Categoría',

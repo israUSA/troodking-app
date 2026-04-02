@@ -4,14 +4,18 @@ import 'package:troodking_app/env/environment.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/routes/routes.dart';
+import 'package:troodking_app/shared/services/objectbox_service.dart';
 
-void main() {
+late ObjectboxService objectbox;
+Future<void> main() async {
 
   String environment = const String.fromEnvironment('ENVIRONMENT', defaultValue: Environment.dev);
 
   WidgetsFlutterBinding.ensureInitialized();
   Environment().initConfig(environment);
 
+
+  objectbox = await ObjectboxService.create();
 
   runApp(const MyApp());
 }

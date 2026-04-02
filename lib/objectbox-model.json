@@ -1,0 +1,117 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:615830367803679989",
+      "lastPropertyId": "6:4912197750162704758",
+      "name": "CategorieItem",
+      "properties": [
+        {
+          "id": "1:1876116820623470780",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2542808865166489382",
+          "name": "nameItem",
+          "type": 9
+        },
+        {
+          "id": "3:8001109355283604972",
+          "name": "priceItem",
+          "type": 8
+        },
+        {
+          "id": "4:7454812313517193435",
+          "name": "grams",
+          "type": 9
+        },
+        {
+          "id": "5:3313276793848296581",
+          "name": "macrosId",
+          "indexId": "1:5112664903495154962",
+          "type": 11,
+          "flags": 520,
+          "relationTarget": "Macros"
+        },
+        {
+          "id": "6:4912197750162704758",
+          "name": "troodkingModelId",
+          "indexId": "2:8505377993418805567",
+          "type": 11,
+          "flags": 520,
+          "relationTarget": "TroodkingModel"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2533252362119871382",
+      "lastPropertyId": "3:3239251155639147993",
+      "name": "Macros",
+      "properties": [
+        {
+          "id": "1:6551850602464281857",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6131834973885866272",
+          "name": "calories",
+          "type": 8
+        },
+        {
+          "id": "3:3239251155639147993",
+          "name": "protein",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:5014434234308960145",
+      "lastPropertyId": "3:402482469894003145",
+      "name": "TroodkingModel",
+      "properties": [
+        {
+          "id": "1:8416022373056310673",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1679099095291572667",
+          "name": "categorieName",
+          "type": 9
+        },
+        {
+          "id": "3:402482469894003145",
+          "name": "categorieIcon",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:4389249027511755564",
+          "name": "categorieItems",
+          "targetId": "1:615830367803679989"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "3:5014434234308960145",
+  "lastIndexId": "2:8505377993418805567",
+  "lastRelationId": "1:4389249027511755564",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

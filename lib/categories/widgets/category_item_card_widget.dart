@@ -21,7 +21,7 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
       shape: RoundedRectangleBorder(
         side: BorderSide(
           color: Colors.blue, // Color del borde
-          width: 2.0, // Grosor del borde
+          width: 4.0, // Grosor del borde
         ),
         borderRadius: BorderRadius.circular(10.0), // Esquinas redondeadas
       ),
@@ -29,6 +29,12 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
       child: Stack(
         alignment: AlignmentGeometry.center,
         children: [
+          Column(
+            children: [
+              Image.network('https://veggiedeli.com.ec/wp-content/uploads/2022/10/spaghetti-producto-VegguiDeli.jpg'),
+              TitleWidget(title: 'Pasta 1' ),
+            ],
+          ),
           Positioned(
             top: 3,
             right: 5,
@@ -44,12 +50,6 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
                 child: Icon(Icons.close, color: AppTheme.white, size: responsive.dp(2), fontWeight: FontWeight.bold,),
               ),
             ),
-          ),
-          Column(
-            children: [
-              Image.network('https://veggiedeli.com.ec/wp-content/uploads/2022/10/spaghetti-producto-VegguiDeli.jpg'),
-              TitleWidget(title: 'Pasta 1' ),
-            ],
           ),
         ],
       ),

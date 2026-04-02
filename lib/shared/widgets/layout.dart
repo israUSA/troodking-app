@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +11,13 @@ import 'package:troodking_app/shared/widgets/page_modal.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
 
 class LayoutWidget extends StatefulWidget {
-  const LayoutWidget({super.key, required this.child, this.title, this.nameInterceptor, required this.requiredStack, this.backPageView = false,  this.keyDismiss});
+  const LayoutWidget({super.key, required this.child, this.title, this.nameInterceptor, required this.requiredStack, this.showButtonNavigation = true, this.backPageView = false,  this.keyDismiss});
 
   final Widget child;
   final String? title;
   final String? nameInterceptor;
   final bool requiredStack;
+  final bool showButtonNavigation;
   final bool backPageView;
   final GlobalKey<State<StatefulWidget>>? keyDismiss;
 
@@ -120,7 +119,7 @@ class _LayoutWidgetState extends State<LayoutWidget> {
                   ),
                 ],
               ),
-              const ButtonNavigationWidget(),
+              if(widget.showButtonNavigation) const ButtonNavigationWidget(),
               if (widget.requiredStack) const PageModal(),
               if (widget.requiredStack) const AlertModal(),
             ],

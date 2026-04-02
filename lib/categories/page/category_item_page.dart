@@ -95,7 +95,6 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
                       begin: Alignment(-1.0, -1.0 + _controller.value * 2), 
                       end: Alignment(1.0, 1.0 - _controller.value * 2),
                       colors: [color1, color2],
-
                     ),
                   ),
                     child: Icon(

@@ -303,24 +303,29 @@ class _AlertDeleteCategorieWidgetState extends State<AlertDeleteCategorieWidget>
               ],
               ),
             ),
-      
+
           SizedBox(height: responsive.hp(1),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButtonWidget(
-                      nameButton: 'Cancelar',
+
+          Text('Se eliminaran todos los alimentos de esta categoría', style: TextStyle(fontSize: responsive.dp(1.8), ), textAlign: TextAlign.center,),
+      
+          SizedBox(height: responsive.hp(2)),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButtonWidget(
+                  nameButton: 'Cancelar',
                   onPressed: () {
                     fp.dismissAlert(key: widget.keyToClose);
                   },
                 ),
                 SizedBox(width: responsive.wp(1)),
-                    FilledButtonWidget(
-                      typeButton: WidgetTypeEnum.cancel,
-                      onPressed: widget.confirm,
-                   borderRadius: 10,
-                      text: 'Eliminar',
-                    ),
+                FilledButtonWidget(
+                  typeButton: WidgetTypeEnum.cancel,
+                  onPressed: widget.confirm,
+                  borderRadius: 10,
+                  text: 'Eliminar',
+                ),
               ],
             ),
           ],

@@ -18,8 +18,17 @@ class TroodkingModel {
   String? categorieName;
   String? categorieIcon;
 
-  // En ObjectBox, las relaciones se definen con ToMany
+  
+  @Backlink('categorie')
   final categorieItems = ToMany<CategorieItem>();
+
+  List<CategorieItem>? get categories => categorieItems;
+  set categories(List<CategorieItem>? d){
+    categorieItems.clear();
+    if (d != null) categorieItems.addAll(d);
+  }
+
+
 
   TroodkingModel({
     this.id = 0,

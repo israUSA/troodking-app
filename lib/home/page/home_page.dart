@@ -6,6 +6,7 @@ import 'package:troodking_app/home/widgets/background_card_widget.dart';
 import 'package:troodking_app/home/widgets/home_resume_widget.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
+import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 import 'package:troodking_app/shared/widgets/separate_items_widget.dart';
@@ -18,6 +19,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<TroodkingModel> listTroodkingModel = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
@@ -42,6 +51,7 @@ class _HomePageState extends State<HomePage> {
                         content: CategoriesPage(
                           key: keyCategoriesPage,
                           keyDismissPage: keyCategoriesPage,
+                          listTroodkingModel: listTroodkingModel,
                         ),
                       );   
                   },

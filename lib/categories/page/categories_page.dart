@@ -7,17 +7,20 @@ import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/models/button_type_enum.dart';
+import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/alert_template.dart';
+import 'package:troodking_app/shared/widgets/empty_data_message_widget.dart';
 import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/icon_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
 
 class CategoriesPage extends StatefulWidget {
-  const CategoriesPage({super.key, required this.keyDismissPage});
+  const CategoriesPage({super.key, required this.keyDismissPage, required this.listTroodkingModel});
 
   final GlobalKey keyDismissPage;
+  final List<TroodkingModel> listTroodkingModel;
 
   
 
@@ -58,45 +61,19 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         keyToClose: keyAddCategorieAlert,
                         confirm: () {
                           
+                          
                         },
                         ),
                       ),
                     );
                   },
                 ),
-                // InkWell(
-                //   onTap: () {
-                //     final keyAddCategorieAlert = GlobalHelper.genKey();
-                //     fp.showAlert(
-                //       key: keyAddCategorieAlert,
-                //       content: AlertGeneric(
-                //         content: AlertAddCategorieWidget(
-                //           keyToClose: keyAddCategorieAlert,
-                //           confirm: () {
 
-                //           },
-                //         ),
-                //       ),
-                //     );
-                //   },
-                //   splashColor: AppTheme.proteinColor.withValues(alpha: 0.4),
-                //   child: DottedBorder(
-                //     options: RectDottedBorderOptions(
-                //       dashPattern: [7, 5],
-                //       strokeWidth: 4,
-                //       padding: EdgeInsets.all(responsive.dp(6)),
-                //       color: AppTheme.primaryColor,
-                //     ),
-                //     child: Column(
-                //       children: [
-                //         Icon(Icons.add, color: AppTheme.primaryColor, size: responsive.dp(4),),
-                //         SizedBox(height: responsive.hp(1),),
-                //         TitleWidget(title: 'Agregar Categoría', fontSize: responsive.dp(2.2),)
-                //       ],
-                //     )),
-                // ),
-                GridView.builder(
-                  itemCount: 4,
+
+                widget.listTroodkingModel.isNotEmpty
+
+                ? GridView.builder(
+                  itemCount: widget.listTroodkingModel.length,
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
@@ -120,7 +97,11 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       },
                     );
                   },
-                ),
+                )
+                : Padding(
+                  padding: EdgeInsets.only(top: responsive.hp(20)),
+                  child: EmptyDataMessageWidget(message: 'Sin categorías'),
+                )
               ],
             ),
         ),

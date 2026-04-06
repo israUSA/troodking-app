@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 
-enum WidgetTypeEnum {
-  normal,
-  confirm,
-  sucess,
-  warning,
-  cancel
-}
+enum WidgetTypeEnum { normal, confirm, sucess, warning, cancel, disable }
 
 extension ButtonTypeColor on WidgetTypeEnum {
   Color get colorButton {
@@ -22,6 +16,8 @@ extension ButtonTypeColor on WidgetTypeEnum {
         return AppTheme.cautionCardSoft;
       case WidgetTypeEnum.cancel:
         return AppTheme.error;
+      case WidgetTypeEnum.disable:
+        return AppTheme.textSecondary;
     }
   }
 
@@ -36,6 +32,8 @@ extension ButtonTypeColor on WidgetTypeEnum {
       case WidgetTypeEnum.warning:
         return AppTheme.textColor;
       case WidgetTypeEnum.cancel:
+        return AppTheme.white;
+      case WidgetTypeEnum.disable:
         return AppTheme.white;
     }
   }

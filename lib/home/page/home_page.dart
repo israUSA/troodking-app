@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:troodking_app/categories/page/categories_page.dart';
@@ -8,6 +11,7 @@ import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
+import 'package:troodking_app/shared/services/objectbox_service.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 import 'package:troodking_app/shared/widgets/separate_items_widget.dart';
 
@@ -24,8 +28,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    listTroodkingModel = ObjectboxService.instance.getCategories();
+    log('categories: ${jsonEncode(listTroodkingModel)}');
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +38,19 @@ class _HomePageState extends State<HomePage> {
     return Consumer<FunctionalProvider>(
       builder: (context, fp, child) {
         return LayoutWidget(
-        nameInterceptor: 'homePage',
-        requiredStack: true,
-        child: Column(
-          children: [
-            SeparateItemsWidget(
-              separationValue: responsive.hp(2.5),
-              children: [
-                BackgroundCardWidget(
-                  title: 'Categorías',
-                  foodIcon: AppTheme.categoriesIcon,
-                  color: AppTheme.proteinColor,
-                  onPressed: () {
-                    final keyCategoriesPage = GlobalHelper.genKey();
+          nameInterceptor: 'homePage',
+          requiredStack: true,
+          child: Column(
+            children: [
+              SeparateItemsWidget(
+                separationValue: responsive.hp(2.5),
+                children: [
+                  BackgroundCardWidget(
+                    title: 'Categorías',
+                    foodIcon: AppTheme.categoriesIcon,
+                    color: AppTheme.proteinColor,
+                    onPressed: () {
+                      final keyCategoriesPage = GlobalHelper.genKey();
                       fp.addPage(
                         key: keyCategoriesPage,
                         content: CategoriesPage(
@@ -53,25 +58,25 @@ class _HomePageState extends State<HomePage> {
                           keyDismissPage: keyCategoriesPage,
                           listTroodkingModel: listTroodkingModel,
                         ),
-                      );   
-                  },
-                ),
-                BackgroundCardWidget(
-                  title: 'Registro de compras',
-                  foodIcon: AppTheme.buyFoodIcon,
-                  color: AppTheme.accentColor,
-                  onPressed: () {
-                    
-                  },
-                )
-              ],
-            ),
-      
-            SizedBox(height: responsive.isTablet ? responsive.hp(15) : responsive.hp(10),),
-      
-            HomeResumeWidget()
-      
-            
+                      );
+                    },
+                  ),
+                  BackgroundCardWidget(
+                    title: 'Registro de compras',
+                    foodIcon: AppTheme.buyFoodIcon,
+                    color: AppTheme.accentColor,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                height: responsive.isTablet
+                    ? responsive.hp(15)
+                    : responsive.hp(10),
+              ),
+
+              HomeResumeWidget(),
             ],
           ),
         );

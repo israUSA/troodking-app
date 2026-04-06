@@ -7,23 +7,38 @@ class ObjectboxService {
   late final Store store;
   late final Box<TroodkingModel> troodkingModelBox;
 
+  static ObjectboxService? _instance;
+  static bool get isInitialized => _instance != null;
+
+
+
   ObjectboxService._create(this.store) {
-    // Add any additional setup code, e.g. build queries.
+    troodkingModelBox = store.box<TroodkingModel>();
+  }
+
+   static ObjectboxService get instance {
+    if (!isInitialized) {
+      throw Exception("ObjectBox no ha sido inicializado.");
+    }
+    return _instance!;
   }
 
   static Future<ObjectboxService> create() async {
     final docsDir = await getApplicationDocumentsDirectory();
     final store = await openStore(directory: p.join(docsDir.path, "obx"));
-    return ObjectboxService._create(store);
+    _instance = ObjectboxService._create(store);
+    return _instance!;
   }
 
+  List<TroodkingModel> getCategories() {
+    return troodkingModelBox.getAll();
+  }
 
   Future<void> createCategory(TroodkingModel troodking) async {
-
     troodkingModelBox.put(troodking);
   }
 
-  Future<void> deleteCategory() async {
-
+  Future<void> deleteCategory(int id) async {
+    troodkingModelBox.remove(id);
   }
 }

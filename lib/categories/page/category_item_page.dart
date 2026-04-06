@@ -5,16 +5,17 @@ import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/models/button_type_enum.dart';
+import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
+import 'package:troodking_app/shared/services/objectbox_service.dart';
 import 'package:troodking_app/shared/widgets/alert_template.dart';
 import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
-import 'package:troodking_app/shared/widgets/icon_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 
 class CategoryItemPage extends StatefulWidget {
-  const CategoryItemPage({super.key, required this.keyDismissPage, required this.title});
+  const CategoryItemPage({super.key, required this.keyDismissPage, required this.troodkingModel});
 
-  final String title;
+  final TroodkingModel troodkingModel;
   final GlobalKey keyDismissPage;
 
   @override
@@ -51,7 +52,7 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
       builder: (context, fp, child) {
       return LayoutWidget(
         keyDismiss: widget.keyDismissPage,
-        title: widget.title,
+        title: '${widget.troodkingModel.categorieIcon} ${widget.troodkingModel.categorieName}',
         requiredStack: false,
         showButtonNavigation: false,
         backPageView: true,
@@ -70,7 +71,6 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
                     int index = progress.floor() % colors.length; 
                     int nextIndex = (index + 1) % colors.length;
 
-                    // Creamos una transición suave entre el color actual y el siguiente
                     double colorT = progress - progress.floor();
                     
                     Color color1 = Color.lerp(
@@ -186,8 +186,12 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
                     content: AlertDeleteCategorieWidget(
                       keyToClose: keyAlertDeleteCategorie, 
                       confirm: () {
-                        
-                      },)));
+                        ObjectboxService.instance.deleteCategory(widget.troodkingModel.id);
+                        fp.getTroodkingModel();
+                        fp.dismissAlert(key: keyAlertDeleteCategorie);
+                        fp.dismissPage(key: widget.keyDismissPage);
+                      },
+                     )));
               },
               ),
             ],

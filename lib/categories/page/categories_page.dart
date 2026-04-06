@@ -13,14 +13,12 @@ import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 
 class CategoriesPage extends StatefulWidget {
-  const CategoriesPage({
+  CategoriesPage({
     super.key,
     required this.keyDismissPage,
-    required this.listTroodkingModel,
   });
 
   final GlobalKey keyDismissPage;
-  final List<TroodkingModel> listTroodkingModel;
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
@@ -60,9 +58,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   },
                 ),
 
-                widget.listTroodkingModel.isNotEmpty
+                fp.troodkingModel.isNotEmpty
                     ? GridView.builder(
-                        itemCount: widget.listTroodkingModel.length,
+                        itemCount: fp.troodkingModel.length,
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
@@ -71,16 +69,16 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         ),
                         itemBuilder: (context, index) {
                           return CategoriesCardWidget(
-                            title: widget.listTroodkingModel[index].categorieName ?? '',
-                            emojiIcon: widget.listTroodkingModel[index].categorieIcon ?? '',
+                            title: fp.troodkingModel[index].categorieName ?? '',
+                            emojiIcon:fp.troodkingModel[index].categorieIcon ?? '',
                             onPressed: () {
                               final keyCategorieItemPage = GlobalHelper.genKey();
                               fp.addPage(
                                 key: keyCategorieItemPage,
                                 content: CategoryItemPage(
-                                  title: widget.listTroodkingModel[index].categorieName ?? '',
                                   key: keyCategorieItemPage,
                                   keyDismissPage: keyCategorieItemPage,
+                                  troodkingModel: fp.troodkingModel[index],
                                 ),
                               );
                             },

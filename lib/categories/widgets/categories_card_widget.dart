@@ -26,23 +26,26 @@ class _CategoriesCardWidgetState extends State<CategoriesCardWidget> {
       child: Stack(
         alignment: AlignmentGeometry.center,
         children: [
-          InkWell(
-            onTap: widget.onPressed,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: responsive.hp(6),
-                  child: Text(
-                    widget.emojiIcon,
-                    style: TextStyle(
-                      fontSize: responsive.dp(5)
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: responsive.hp(0.5)),
+            child: InkWell(
+              onTap: widget.onPressed,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: responsive.hp(7),
+                    child: Text(
+                      widget.emojiIcon,
+                      style: TextStyle(
+                        fontSize: responsive.dp(5)
+                      ),
                     ),
                   ),
-                ),
-                TitleWidget(title: widget.title)
-              ],
-              
+                  TitleWidget(title: widget.title)
+                ],
+                
+              ),
             ),
           ),
         ],

@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
+import 'package:troodking_app/shared/models/troodking_model.dart';
+import 'package:troodking_app/shared/services/objectbox_service.dart';
 import 'package:troodking_app/shared/widgets/alert_template.dart';
 
 class FunctionalProvider extends ChangeNotifier {
@@ -9,9 +12,7 @@ class FunctionalProvider extends ChangeNotifier {
   List<Widget> pages = [];
   
   String? currentPage;
-
-
-  
+  List<TroodkingModel> troodkingModel = [];
   
 
   showAlert(
@@ -54,6 +55,12 @@ class FunctionalProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  getTroodkingModel(){
+    troodkingModel = ObjectboxService.instance.getCategories();
+    log('categories: ${jsonEncode(troodkingModel)}');
+    notifyListeners();
+  }
 
-  
+
+
 }

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:troodking_app/categories/page/item_view_page.dart';
 import 'package:troodking_app/categories/services/scan_service.dart';
 import 'package:troodking_app/categories/widgets/category_item_card_widget.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
@@ -41,21 +42,22 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
     
     try {
 
-      String? qrNumberGuia = await scanService(context);
-      log('Qr: $qrNumberGuia');
-      if (qrNumberGuia == null || qrNumberGuia == '') return;
-      if (!context.mounted) return;
-      final keyFormDistributionPage = GlobalHelper.genKey();
+      // String? barcodeNumber = await scanService(context);
+      // log('Qr: $barcodeNumber');
+      // if (barcodeNumber == null || barcodeNumber == '') return;
+      // if (!context.mounted) return;
+      final keyItemViewPage = GlobalHelper.genKey();
 
-      // fp.addPage(
-      //     key: keyFormDistributionPage,
-      //     content: FormDistributionPage(
-      //         key: keyFormDistributionPage,
-      //         keyPage: keyFormDistributionPage,
-      //         idOrden: _searchQrOrder(qrNumberGuia.trim())!));
+      fp.addPage(
+        key: keyItemViewPage,
+        content: ItemViewPage(
+          key: keyItemViewPage,
+          keyDismissPage: keyItemViewPage,
+        ),
+      );
     } catch (e) {
       return;
-    } finally{
+    } finally {
       isScanning = false;
     }
   }

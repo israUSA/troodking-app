@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:troodking_app/categories/services/scan_service.dart';
 import 'package:troodking_app/categories/widgets/category_item_card_widget.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
@@ -9,6 +12,7 @@ import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/services/objectbox_service.dart';
 import 'package:troodking_app/shared/widgets/alert_template.dart';
+import 'package:troodking_app/shared/widgets/empty_data_message_widget.dart';
 import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 
@@ -26,6 +30,40 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
   
   List<Color> colors = [AppTheme.proteinColor, AppTheme.accentColor, AppTheme.carbsColor, AppTheme.energy, AppTheme.fatsColor];
   late AnimationController _controller;
+  bool isScanning = false;
+
+
+  void scanQr() async {
+    if (isScanning) return;
+    final fp = Provider.of<FunctionalProvider>(context, listen: false);
+    
+    isScanning = true;
+    
+    try {
+
+      String? qrNumberGuia = await scanService(context);
+      log('Qr: $qrNumberGuia');
+      if (qrNumberGuia == null || qrNumberGuia == '') return;
+      if (!context.mounted) return;
+      final keyFormDistributionPage = GlobalHelper.genKey();
+
+      // fp.addPage(
+      //     key: keyFormDistributionPage,
+      //     content: FormDistributionPage(
+      //         key: keyFormDistributionPage,
+      //         keyPage: keyFormDistributionPage,
+      //         idOrden: _searchQrOrder(qrNumberGuia.trim())!));
+    } catch (e) {
+      return;
+    } finally{
+      isScanning = false;
+    }
+  }
+
+
+
+
+
 
 
   @override
@@ -60,9 +98,7 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
         child: Column(
           children: [
             InkWell(
-              onTap: () {
-                
-              },
+              onTap: () => scanQr(),
               child: AnimatedBuilder(
                 animation: _controller,
                   builder: (context, child) {
@@ -107,72 +143,30 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
               ),
               ),
 
-              Container(
+              widget.troodkingModel.categories!.isNotEmpty
+              ? Container(
                 margin: EdgeInsets.symmetric(vertical: responsive.hp(2)),
                 height: responsive.hp(50),
-                child: GridView.count(
-                  crossAxisCount: 3,
+                child: GridView.builder(
                   padding: EdgeInsets.symmetric(vertical: responsive.hp(1)),
-                  children: [
-                    CategoryItemCardWidget(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return CategoryItemCardWidget(
                       onDelete: () {
                       
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                    CategoryItemCardWidget(
-                      onDelete: () {
-                      
-                    },),
-                  ],
-                  
-                  // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //   crossAxisCount: 3,
-                  //   mainAxisSpacing: 10,
-                  //   crossAxisSpacing: 10,
-                  // ),
-                  // itemBuilder: (context, index) {
-                  //   return CategoryItemCardWidget(
-                  //     onDelete: () {
-                      
-                  //   },);
-                  // },
+                    },);
+                  },
                 ),
-              ),
+              )
+              : Container(
+                  margin: EdgeInsets.symmetric(vertical: responsive.hp(2)),
+                  height: responsive.hp(50),
+                  alignment: Alignment.center,
+                  child: EmptyDataMessageWidget(message: 'Aún no tienes productos.\n¡Escanea un código de barras para empezar!')),
 
             FilledButtonWidget(
               text: 'Eliminar Categoría',

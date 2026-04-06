@@ -19,7 +19,7 @@ class TroodkingModel {
   String? categorieIcon;
 
   
-  @Backlink('categorie')
+  @Backlink('troodkingModel')
   final categorieItems = ToMany<CategorieItem>();
 
   List<CategorieItem>? get categories => categorieItems;
@@ -29,30 +29,27 @@ class TroodkingModel {
   }
 
 
+  TroodkingModel();
 
-  TroodkingModel({
-    this.id = 0,
-    this.categorieName,
-    this.categorieIcon,
-  });
 
   factory TroodkingModel.fromJson(Map<String, dynamic> json) {
-    final model = TroodkingModel(
-      categorieName: json["categorieName"],
-      categorieIcon: json["CategorieIcon"],
-    );
+    final instance = TroodkingModel();
+
+    instance.categorieIcon = json["CategorieIcon"];
+    instance.categorieName = json["categorieName"];
+
     if (json["categorieItems"] != null) {
-      model.categorieItems.addAll(
+      instance.categories!.addAll(
         List<CategorieItem>.from(json["categorieItems"].map((x) => CategorieItem.fromJson(x)))
       );
     }
-    return model;
+    return instance;
   }
 
   Map<String, dynamic> toJson() => {
     "categorieName": categorieName,
     "CategorieIcon": categorieIcon,
-    "categorieItems": categorieItems.map((x) => x.toJson()).toList(),
+    "categorieItems": categories!.map((x) => x.toJson()).toList(),
   };
 }
 

@@ -124,14 +124,14 @@ final _entities = <obx_int.ModelEntity>[
         flags: 0,
       ),
     ],
-    relations: <obx_int.ModelRelation>[
-      obx_int.ModelRelation(
-        id: const obx_int.IdUid(1, 4389249027511755564),
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[
+      obx_int.ModelBacklink(
         name: 'categorieItems',
-        targetId: const obx_int.IdUid(1, 615830367803679989),
+        srcEntity: 'CategorieItem',
+        srcField: 'troodkingModel',
       ),
     ],
-    backlinks: <obx_int.ModelBacklink>[],
   ),
 ];
 
@@ -185,7 +185,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     retiredEntityUids: const [],
     retiredIndexUids: const [],
     retiredPropertyUids: const [],
-    retiredRelationUids: const [],
+    retiredRelationUids: const [4389249027511755564],
     modelVersion: 5,
     modelVersionParserMinimum: 5,
     version: 1,
@@ -311,8 +311,11 @@ obx_int.ModelDefinition getObjectBoxModel() {
       model: _entities[2],
       toOneRelations: (TroodkingModel object) => [],
       toManyRelations: (TroodkingModel object) => {
-        obx_int.RelInfo<TroodkingModel>.toMany(1, object.id):
-            object.categorieItems,
+        obx_int.RelInfo<CategorieItem>.toOneBacklink(
+          6,
+          object.id,
+          (CategorieItem srcObject) => srcObject.troodkingModel,
+        ): object.categorieItems,
       },
       getId: (TroodkingModel object) => object.id,
       setId: (TroodkingModel object, int id) {
@@ -335,27 +338,23 @@ obx_int.ModelDefinition getObjectBoxModel() {
       objectFromFB: (obx.Store store, ByteData fbData) {
         final buffer = fb.BufferContext(fbData);
         final rootOffset = buffer.derefObject(0);
-        final idParam = const fb.Int64Reader().vTableGet(
-          buffer,
-          rootOffset,
-          4,
-          0,
-        );
-        final categorieNameParam = const fb.StringReader(
-          asciiOptimization: true,
-        ).vTableGetNullable(buffer, rootOffset, 6);
-        final categorieIconParam = const fb.StringReader(
-          asciiOptimization: true,
-        ).vTableGetNullable(buffer, rootOffset, 8);
-        final object = TroodkingModel(
-          id: idParam,
-          categorieName: categorieNameParam,
-          categorieIcon: categorieIconParam,
-        );
+
+        final object = TroodkingModel()
+          ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
+          ..categorieName = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGetNullable(buffer, rootOffset, 6)
+          ..categorieIcon = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGetNullable(buffer, rootOffset, 8);
         obx_int.InternalToManyAccess.setRelInfo<TroodkingModel>(
           object.categorieItems,
           store,
-          obx_int.RelInfo<TroodkingModel>.toMany(1, object.id),
+          obx_int.RelInfo<CategorieItem>.toOneBacklink(
+            6,
+            object.id,
+            (CategorieItem srcObject) => srcObject.troodkingModel,
+          ),
         );
         return object;
       },
@@ -436,7 +435,7 @@ class TroodkingModel_ {
 
   /// see [TroodkingModel.categorieItems]
   static final categorieItems =
-      obx.QueryRelationToMany<TroodkingModel, CategorieItem>(
-        _entities[2].relations[0],
+      obx.QueryBacklinkToMany<CategorieItem, TroodkingModel>(
+        CategorieItem_.troodkingModel,
       );
 }

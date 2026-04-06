@@ -160,6 +160,10 @@ class _AlertTemplateState extends State<AlertTemplate> {
   }
 }
 
+
+
+
+
 class AlertAddCategorieWidget extends StatefulWidget {
   const AlertAddCategorieWidget({super.key, required this.keyToClose});
 

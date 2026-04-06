@@ -5,7 +5,6 @@ import 'package:troodking_app/categories/widgets/categories_card_widget.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/models/button_type_enum.dart';
-import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/alert_template.dart';
 import 'package:troodking_app/shared/widgets/empty_data_message_widget.dart';

@@ -46,10 +46,187 @@ class _ItemViewPageState extends State<ItemViewPage> {
                 width: 5
               )
             ),
-            child: Column(
+            child: Stack(
               children: [
-                
-                
+
+                Positioned(
+                  top: 5,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: responsive.hp(1.5),
+                          width: responsive.wp(30),
+                          decoration: BoxDecoration(
+                            color: AppTheme.textCard
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            height: responsive.hp(0.75),
+                            width: responsive.wp(30),
+                            decoration: BoxDecoration(
+                              color: AppTheme.textPrimary.withValues(alpha: 0.6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppTheme.textPrimary.withValues(alpha: 0.6),
+                                  blurRadius: 5,
+                                  spreadRadius: 2,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),),
+
+                Positioned(
+                  top: 10,
+                  left: 10,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: responsive.hp(3),
+                        width: responsive.hp(3),
+                        decoration: BoxDecoration(
+                          color: AppTheme.textCard,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.textCard.withValues(alpha: 0.7),
+                              blurRadius: 5,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Transform.rotate(
+                        angle: 45,
+                        child: Container(
+                          height: responsive.hp(0.7),
+                          width: responsive.hp(2.5),
+                          decoration: BoxDecoration(
+                            color: AppTheme.textTertiary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: responsive.hp(3),
+                        width: responsive.hp(3),
+                        decoration: BoxDecoration(
+                          color: AppTheme.textCard,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.textCard.withValues(alpha: 0.7),
+                              blurRadius: 5,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Transform.rotate(
+                        angle: -45,
+                        child: Container(
+                          height: responsive.hp(0.7),
+                          width: responsive.hp(2.5),
+                          decoration: BoxDecoration(
+                            color: AppTheme.textTertiary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: responsive.hp(3),
+                        width: responsive.hp(3),
+                        decoration: BoxDecoration(
+                          color: AppTheme.textCard,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.textCard.withValues(alpha: 0.7),
+                              blurRadius: 5,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Transform.rotate(
+                        angle: -45,
+                        child: Container(
+                          height: responsive.hp(0.7),
+                          width: responsive.hp(2.5),
+                          decoration: BoxDecoration(
+                            color: AppTheme.textTertiary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: responsive.hp(3),
+                        width: responsive.hp(3),
+                        decoration: BoxDecoration(
+                          color: AppTheme.textCard,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.textCard.withValues(alpha: 0.7),
+                              blurRadius: 5,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Transform.rotate(
+                        angle: 45,
+                        child: Container(
+                          height: responsive.hp(0.7),
+                          width: responsive.hp(2.5),
+                          decoration: BoxDecoration(
+                            color: AppTheme.textTertiary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Column(
+                  children: [
+                    
+                    
+                  ],
+                ),
               ],
             ),
           ),

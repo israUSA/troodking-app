@@ -4,6 +4,7 @@ import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/models/button_type_enum.dart';
 import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
+import 'package:troodking_app/shared/widgets/separate_items_widget.dart';
 import 'package:troodking_app/shared/widgets/text_form_field_widget.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
 
@@ -221,8 +222,59 @@ class _ItemViewPageState extends State<ItemViewPage> {
                   ),
                 ),
 
-                Column(
+                Row(
                   children: [
+                    Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: responsive.hp(6), horizontal: responsive.hp(4)),
+                        child: SeparateItemsWidget(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                            TitleWidget(title: 'Carbohidratos'),       
+                          ],
+                        ),
+                      ),
+                    ),
+                
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: responsive.hp(6)),
+                        decoration: BoxDecoration(
+                          border: BorderDirectional(
+                            start: BorderSide(
+                              color: AppTheme.fatsColor,
+                              width: 3,
+                            ),
+                          )
+                        ),
+                        child: SeparateItemsWidget(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                            TitleWidget(title: '134'),
+                          ]),
+                      ),
+                    )
+                
+                    
+                    
                     
                     
                   ],
@@ -241,7 +293,7 @@ class _ItemViewPageState extends State<ItemViewPage> {
                 maxWidth: responsive.wp(40),
                 maxHeigth: responsive.hp(5),
                 borderWith: 3,
-                colorBorder: AppTheme.fatsColor,
+                colorBorder: AppTheme.proteinColor,
                 borderRadius: 0,
                 fontSize: responsive.dp(2.3),
               ),
@@ -250,7 +302,7 @@ class _ItemViewPageState extends State<ItemViewPage> {
                 maxWidth: responsive.wp(40),
                 maxHeigth: responsive.hp(5),
                 borderWith: 3,
-                colorBorder: AppTheme.fatsColor,
+                colorBorder: AppTheme.proteinColor,
                 borderRadius: 0,
                 fontSize: responsive.dp(2.3),
 

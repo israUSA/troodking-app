@@ -13,6 +13,9 @@ class CategoryItemCardWidget extends StatefulWidget {
 }
 
 class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
+
+  
+
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
@@ -20,37 +23,90 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
       color: AppTheme.white,
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: Colors.blue, // Color del borde
-          width: 4.0, // Grosor del borde
+          color: Colors.blue, 
+          width: 4.0,
         ),
-        borderRadius: BorderRadius.circular(10.0), // Esquinas redondeadas
+        borderRadius: BorderRadius.circular(10.0),
       ),
 
       child: Stack(
         alignment: AlignmentGeometry.center,
+        clipBehavior: Clip.none,
         children: [
           Column(
             children: [
-              Image.network('https://veggiedeli.com.ec/wp-content/uploads/2022/10/spaghetti-producto-VegguiDeli.jpg'),
-              TitleWidget(title: 'Pasta 1' ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network('https://veggiedeli.com.ec/wp-content/uploads/2022/10/spaghetti-producto-VegguiDeli.jpg', )),
+              Padding(
+                padding: EdgeInsets.only(left: responsive.wp(2)),
+                child: Row(children: [
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        TitleWidget(title: 'P: 100', fontSize: responsive.dp(1.7), fontWeight: FontWeight.bold,)
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        TitleWidget(title: 'C: 120', fontSize: responsive.dp(1.7), fontWeight: FontWeight.bold)
+                                    
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        TitleWidget(title: 'G: 80', fontSize: responsive.dp(1.7), fontWeight: FontWeight.bold)
+                                    
+                      ],
+                    ),
+                  )
+                ],),
+              )
             ],
           ),
           Positioned(
-            top: 3,
-            right: 5,
-            child: InkWell(
+            top: 0, 
+            right: 0,
+            child: GestureDetector(
               onTap: widget.onDelete,
-              child: Container(
-                height: responsive.dp(2),
-                width: responsive.dp(2),
-                decoration: BoxDecoration(
-                  color: AppTheme.error,
-                  shape: BoxShape.circle,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(10.0),
+                  bottomLeft: Radius.circular(
+                    30.0,
+                  ), 
                 ),
-                child: Icon(Icons.close, color: AppTheme.white, size: responsive.dp(2), fontWeight: FontWeight.bold,),
+                child: Container(
+                  width: responsive.dp(3.2),
+                  height: responsive.dp(3.2),
+                  color: AppTheme.error,
+                  child: Icon(
+                    Icons.close,
+                    color: AppTheme.white,
+                    size: responsive.dp(1.8),
+                  ),
+                ),
               ),
             ),
           ),
+          Positioned(
+            top: 0,
+            child: Container(
+              padding: EdgeInsets.all(responsive.dp(0.5)),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: TitleWidget(title: 'Mejor opción', color: AppTheme.white, fontSize: responsive.dp(1.5), ),
+            ),
+          )
         ],
       ),
     );

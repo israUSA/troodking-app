@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:openfoodfacts/openfoodfacts.dart';
 import 'package:provider/provider.dart';
 import 'package:troodking_app/env/environment.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
@@ -7,12 +8,25 @@ import 'package:troodking_app/shared/routes/routes.dart';
 import 'package:troodking_app/shared/services/objectbox_service.dart';
 
 late ObjectboxService objectbox;
+
+
 Future<void> main() async {
 
   String environment = const String.fromEnvironment('ENVIRONMENT', defaultValue: Environment.dev);
 
   WidgetsFlutterBinding.ensureInitialized();
   Environment().initConfig(environment);
+
+  OpenFoodAPIConfiguration.userAgent = UserAgent(
+    name:Environment().config!.appName,
+  );
+
+  OpenFoodAPIConfiguration.globalLanguages = <OpenFoodFactsLanguage>[
+    OpenFoodFactsLanguage.SPANISH,
+  ];
+
+  OpenFoodAPIConfiguration.globalCountry = OpenFoodFactsCountry.ECUADOR;
+
 
 
   objectbox = await ObjectboxService.create();

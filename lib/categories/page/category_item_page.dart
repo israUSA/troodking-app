@@ -145,16 +145,17 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
               ),
               ),
 
-              widget.troodkingModel.categories!.isNotEmpty
+              widget.troodkingModel.categories!.isEmpty
               ? Container(
                 margin: EdgeInsets.symmetric(vertical: responsive.hp(2)),
                 height: responsive.hp(50),
                 child: GridView.builder(
                   padding: EdgeInsets.symmetric(vertical: responsive.hp(1)),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: 2,
                     mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
+                    crossAxisSpacing: 0,
+                    mainAxisExtent: responsive.hp(16)
                   ),
                   itemBuilder: (context, index) {
                     return CategoryItemCardWidget(

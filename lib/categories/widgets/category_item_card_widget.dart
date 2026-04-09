@@ -97,7 +97,7 @@ class _CategoryItemCardWidgetState extends State<CategoryItemCardWidget> {
             ),
           ),
           Positioned(
-            top: 0,
+            top: -10,
             child: Container(
               padding: EdgeInsets.all(responsive.dp(0.5)),
               decoration: BoxDecoration(

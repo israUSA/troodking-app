@@ -32,6 +32,8 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
   List<Color> colors = [AppTheme.proteinColor, AppTheme.accentColor, AppTheme.carbsColor, AppTheme.energy, AppTheme.fatsColor];
   late AnimationController _controller;
   bool isScanning = false;
+  final keyItemViewPage = GlobalHelper.genKey();
+
 
 
   void scanQr() async {
@@ -46,7 +48,6 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
       // log('Qr: $barcodeNumber');
       // if (barcodeNumber == null || barcodeNumber == '') return;
       // if (!context.mounted) return;
-      final keyItemViewPage = GlobalHelper.genKey();
 
       fp.addPage(
         key: keyItemViewPage,
@@ -159,7 +160,16 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
                   ),
                   itemBuilder: (context, index) {
                     return CategoryItemCardWidget(
-                      onDelete: () {
+                            onTap: () {
+                              fp.addPage(
+                                key: keyItemViewPage,
+                                content: ItemViewPage(
+                                  key: keyItemViewPage,
+                                  keyDismissPage: keyItemViewPage,
+                                ),
+                              );
+                            },
+                            onDelete: () {
                       
                     },);
                   },

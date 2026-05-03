@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:openfoodfacts/openfoodfacts.dart';
 import 'package:provider/provider.dart';
 import 'package:troodking_app/categories/page/item_view_page.dart';
 import 'package:troodking_app/categories/services/scan_service.dart';
@@ -44,10 +46,17 @@ class _CategoryItemPageState extends State<CategoryItemPage> with SingleTickerPr
     
     try {
 
-      // String? barcodeNumber = await scanService(context);
-      // log('Qr: $barcodeNumber');
-      // if (barcodeNumber == null || barcodeNumber == '') return;
-      // if (!context.mounted) return;
+      String? barcodeNumber = await scanService(context);
+      log('Qr: $barcodeNumber');
+      if (barcodeNumber == null || barcodeNumber == '') return;
+      if (!context.mounted) return;
+
+
+      ProductQueryConfiguration config = ProductQueryConfiguration(barcodeNumber, version: ProductQueryVersion.v3);
+
+      ProductResultV3 product = await OpenFoodAPIClient.getProductV3(config);
+      log('product: ${jsonEncode(product)}');
+
 
       fp.addPage(
         key: keyItemViewPage,

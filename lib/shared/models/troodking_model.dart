@@ -5,10 +5,7 @@ import 'package:objectbox/objectbox.dart';
 List<TroodkingModel> listTroodkingModelFromJson(String str) => List<TroodkingModel>.from(json.decode(str).map((x) => TroodkingModel.fromJson(x)));
 TroodkingModel troodkingModelFromJson(String str) => TroodkingModel.fromJson(json.decode(str));
 
-
 String troodkingModelToJson(List<TroodkingModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-
 
 @Entity()
 class TroodkingModel {

@@ -10,6 +10,7 @@ import 'package:troodking_app/shared/models/troodking_model.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/services/objectbox_service.dart';
 import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
+import 'package:troodking_app/shared/widgets/outlined_button_widget.dart';
 import 'package:troodking_app/shared/widgets/text_button_widget.dart';
 import 'package:troodking_app/shared/widgets/text_form_field_widget.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
@@ -161,7 +162,94 @@ class _AlertTemplateState extends State<AlertTemplate> {
 }
 
 
+Text titleAlerts(
+  Responsive responsive, {
+  required String title,
+  required Color color,
+}) {
+  return Text(
+    title,
+    style: TextStyle(
+      fontSize: responsive.isTablet ? responsive.dp(1.98) : 20,
+      fontWeight: FontWeight.bold,
+      color: color,
+    ),
+  );
+}
 
+Padding messageAlerts(
+  Size size,
+  Responsive responsive, {
+  required String message,
+  Color? color,
+  FontWeight? fontWeight,
+}) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+    child: Text(
+      message,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: responsive.isTablet ? responsive.dp(1.71) : 17,
+        fontWeight: fontWeight ?? FontWeight.w400,
+        color: color ?? Colors.black,
+      ),
+    ),
+  );
+}
+
+class AlertLoading extends StatefulWidget {
+  const AlertLoading({super.key});
+
+  @override
+  State<AlertLoading> createState() => _AlertLoadingState();
+}
+
+class _AlertLoadingState extends State<AlertLoading>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      lowerBound: 0.5,
+      // animationBehavior : AnimationBehavior.preserve,
+      reverseDuration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    )..repeat(reverse: true);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+    return Material(
+      type: MaterialType.transparency,
+      child: SizedBox(
+        height: responsive.isTablet ? responsive.hp(25) : 200,
+        width: responsive.isTablet ? responsive.wp(70) : 280,
+        child: FadeTransition(
+          opacity: _animation,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+  
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 
 class AlertAddCategorieWidget extends StatefulWidget {
@@ -360,6 +448,110 @@ class _AlertDeleteCategorieWidgetState
           ],
         );
       },
+    );
+  }
+}
+
+class WarningAlert extends StatelessWidget {
+  final GlobalKey keyToClose;
+  final void Function()? confirm;
+  final void Function()? cancel;
+  final String? message;
+  final bool? withoutConfirmButton;
+  final String title;
+  final bool? isTitle;
+
+  const WarningAlert({
+    super.key,
+    this.isTitle = true,
+    required this.keyToClose,
+    this.message = 'body',
+    this.withoutConfirmButton = false,
+    required this.title,
+    this.confirm,
+    this.cancel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final responsive = Responsive(context);
+
+    return Column(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            color: AppTheme.caution,
+            shape: BoxShape.circle
+          ),
+          height: size.height * 0.06,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                child: Icon(
+                  Icons.priority_high_sharp,
+                  color: AppTheme.white,
+                  size: responsive.isTablet ? responsive.dp(4) : 40,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 25),
+        isTitle == true
+            ? titleAlerts(responsive, title: title, color: AppTheme.caution)
+            : const SizedBox(),
+        isTitle == true
+            ? SizedBox(height: size.height * 0.015)
+            : const SizedBox(),
+        Padding(
+          padding: EdgeInsetsGeometry.symmetric(horizontal: size.width * 0.02),
+          child: messageAlerts(size, responsive, message: message!),
+        ),
+        SizedBox(height: size.height * 0.025),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: responsive.isTablet
+                ? responsive.wp(2)
+                : responsive.wp(2),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (cancel != null) ...{
+                OutlinedButtonWidget(
+                  text: 'Cancelar',
+                  onPressed: cancel,
+                  color: AppTheme.caution,
+                  width: size.width * 0.4,
+                ),
+                SizedBox(width: size.width * 0.03),
+              },
+              if (!withoutConfirmButton!) ...{
+                Expanded(
+                  child: FilledButtonWidget(
+                    borderRadius: 5,
+                    text: 'Aceptar',
+                    typeButton: WidgetTypeEnum.warning,
+                    onPressed:
+                        confirm ??
+                        () {
+                          final fp = Provider.of<FunctionalProvider>(
+                            context,
+                            listen: false,
+                          );
+                          fp.dismissAlert(key: keyToClose);
+                        },
+                  ),
+                ),
+              },
+            ],
+          ),
+        ),
+        SizedBox(height: size.height * 0.02),
+      ],
     );
   }
 }

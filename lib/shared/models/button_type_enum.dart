@@ -13,7 +13,7 @@ extension ButtonTypeColor on WidgetTypeEnum {
       case WidgetTypeEnum.sucess:
         return AppTheme.success;
       case WidgetTypeEnum.warning:
-        return AppTheme.cautionCardSoft;
+        return AppTheme.caution;
       case WidgetTypeEnum.cancel:
         return AppTheme.error;
       case WidgetTypeEnum.disable:

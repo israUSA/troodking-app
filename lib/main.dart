@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:troodking_app/env/environment.dart';
 import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
@@ -26,6 +27,11 @@ Future<void> main() async {
   ];
 
   OpenFoodAPIConfiguration.globalCountry = OpenFoodFactsCountry.ECUADOR;
+
+  await Supabase.initialize(
+         url: 'https://irgbxrkrgsxsjcttbnuz.supabase.co',
+         publishableKey: 'sb_publishable_YP1OeB7l26Mv6w-45rHrpA_5hUW_Xlh',
+       );
 
 
 

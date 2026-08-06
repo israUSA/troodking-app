@@ -2,14 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:troodking_app/404/page/404_page.dart';
 import 'package:troodking_app/home/page/home_page.dart';
+import 'package:troodking_app/security/pages/login_page.dart';
 
 
 class AppRoutes{
-  static const initialRoute = '/home';
+  static const initialRoute = '/login';
 
   static Map<String, Widget Function(BuildContext)> routes ={
     // '/splash' : (_) =>  const SplashScreen(),
-    // '/login' : (_) =>  const LoginPage(),
+    '/login' : (_) =>  const LoginPage(),
     '/home' : (_) =>  const HomePage(),
   };
 

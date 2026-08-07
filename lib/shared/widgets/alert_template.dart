@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:math' as math;
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
@@ -206,9 +207,15 @@ class AlertLoading extends StatefulWidget {
 }
 
 class _AlertLoadingState extends State<AlertLoading>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Animation<double> _animation;
+  late final List<String> _selectedEmojis;
+
+  static const List<String> _allEmojis = [
+    '🍎', '🍏', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈',
+    '🍒', '🍑', '🥭', '🍍', '🥥', '🥝', '🥑', '🥦', '🥕', '🌽',
+    '🧀', '🥚', '🥞', '🍞', '🥩', '🍗', '🍤', '🍕', '🌮', '🥗'
+  ];
 
   @override
   void dispose() {
@@ -218,32 +225,51 @@ class _AlertLoadingState extends State<AlertLoading>
 
   @override
   void initState() {
-    _controller = AnimationController(
-      lowerBound: 0.5,
-      // animationBehavior : AnimationBehavior.preserve,
-      reverseDuration: const Duration(milliseconds: 500),
-      duration: const Duration(milliseconds: 500),
-      vsync: this,
-    )..repeat(reverse: true);
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
     super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat();
+
+    final random = math.Random();
+    final count = 6;
+    _selectedEmojis = (List<String>.from(_allEmojis)..shuffle(random))
+        .take(count)
+        .toList();
   }
 
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
+    final double appleSize = responsive.isTablet ? responsive.dp(3.5) : 24.0;
+    final int count = _selectedEmojis.length;
+    
+
     return Material(
       type: MaterialType.transparency,
-      child: SizedBox(
-        height: responsive.isTablet ? responsive.hp(25) : 200,
-        width: responsive.isTablet ? responsive.wp(70) : 280,
-        child: FadeTransition(
-          opacity: _animation,
-          child: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-  
-            ],
+      child: Center(
+        child: RotationTransition(
+          turns: _controller,
+          child: SizedBox(
+            width: 100,
+            height: 100,
+            child: Stack(
+              children: List.generate(count, (index) {
+                return Align(
+                  alignment: Alignment.center,
+                  child: Transform.rotate(
+                    angle: (index * 2 * math.pi) / count,
+                    child: Transform.translate(
+                      offset: Offset(0, -45),
+                      child: Text(
+                        _selectedEmojis[index],
+                        style: TextStyle(fontSize: appleSize),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            ),
           ),
         ),
       ),

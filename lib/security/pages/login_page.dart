@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
           );
         }
       } finally{
-        fp.dismissAlert(key: alertLoadingKey);
+        // fp.dismissAlert(key: alertLoadingKey);
 
       }
     } else {

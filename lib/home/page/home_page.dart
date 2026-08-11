@@ -6,7 +6,9 @@ import 'package:troodking_app/home/widgets/background_card_widget.dart';
 import 'package:troodking_app/home/widgets/home_resume_widget.dart';
 import 'package:troodking_app/shared/helpers/global_helper.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
+import 'package:troodking_app/shared/models/button_type_enum.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
+import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/layout.dart';
 import 'package:troodking_app/shared/widgets/separate_items_widget.dart';
 

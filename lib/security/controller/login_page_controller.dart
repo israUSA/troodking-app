@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoginPageController {
 
-  bool showPassword = false;
+  bool showPassword = true;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

@@ -27,6 +27,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool alertModalBool = true;
   LoginPageController controller = LoginPageController();
   LoginService loginService = LoginService();
 
@@ -48,7 +49,8 @@ class _LoginPageState extends State<LoginPage> {
 
         
         if (mounted && login.user != null) {
-          Navigator.pushReplacementNamed(context, '/home');
+          fp.dismissAlert(key: alertLoadingKey);
+          GlobalHelper.navigateToPageRemove(context, '/home');
         }
       } on AuthException catch (error) {
         log('AuthException: ${error.message}');
@@ -81,8 +83,10 @@ class _LoginPageState extends State<LoginPage> {
           );
         }
       } finally{
-        // fp.dismissAlert(key: alertLoadingKey);
-
+        await Future.delayed(Duration(milliseconds: 500), () {
+          fp.dismissAlert(key: alertLoadingKey);
+          
+        });
       }
     } else {
       final keylogin = GlobalHelper.genKey();
@@ -97,6 +101,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller.emailController.text = 'leonardosellan20@gmail.com';
   }
 
   @override
@@ -125,12 +135,29 @@ class _LoginPageState extends State<LoginPage> {
                     child: SeparateItemsWidget(
                       children: [
                         TextFormFieldWidget(
-                          hintText: 'Ingrese su correo',
+                          hintText: 'Correo',
                           controller: controller.emailController,
                         ),
                         TextFormFieldWidget(
-                          hintText: 'Ingree su contraseña',
+                          hintText: 'Contraseña',
                           controller: controller.passwordController,
+                          obscureText: controller.showPassword,
+                          suffixIcon: IconButton(
+                            icon: !controller.showPassword
+                                ? Icon(
+                                    Icons.remove_red_eye_outlined,
+                                    size: responsive.dp(1.9),
+                                  )
+                                : Icon(
+                                    Icons.visibility_off_outlined,
+                                    size: responsive.dp(1.9),
+                                  ),
+                            onPressed: () {
+                              setState(() {
+                                controller.showPassword = !controller.showPassword;
+                              });
+                            },
+                          ),
                         ),
                         Center(
                           child: FilledButtonWidget(
@@ -150,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              AlertModal()
+              alertModalBool ? AlertModal() : SizedBox()
             ],
           ),
         );

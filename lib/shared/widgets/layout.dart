@@ -7,6 +7,7 @@ import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/alert_modal.dart';
 import 'package:troodking_app/shared/widgets/button_navigation_widget.dart';
+import 'package:troodking_app/shared/widgets/filled_button_widget.dart';
 import 'package:troodking_app/shared/widgets/page_modal.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
 
@@ -119,6 +120,7 @@ class _LayoutWidgetState extends State<LayoutWidget> {
                   ),
                 ],
               ),
+
               if(widget.showButtonNavigation) const ButtonNavigationWidget(),
               if (widget.requiredStack) const PageModal(),
               if (widget.requiredStack) const AlertModal(),

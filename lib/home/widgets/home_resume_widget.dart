@@ -1,12 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:troodking_app/env/theme/app_theme.dart';
 import 'package:troodking_app/shared/helpers/responsive.dart';
 import 'package:troodking_app/shared/providers/functional_provider.dart';
 import 'package:troodking_app/shared/widgets/empty_data_message_widget.dart';
-import 'package:troodking_app/shared/widgets/text.dart';
 import 'package:troodking_app/shared/widgets/title.dart';
 
 class HomeResumeWidget extends StatefulWidget {

@@ -118,7 +118,6 @@ class _ButtonNavigationWidgetState extends State<ButtonNavigationWidget> {
               ),
             ),
 
-            // --- BOTÓN SUPERIOR: LOGOUT (Se desplaza hacia arriba) ---
             AnimatedPositioned(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOutBack,
@@ -135,7 +134,6 @@ class _ButtonNavigationWidgetState extends State<ButtonNavigationWidget> {
                     ignoring: !openMenu,
                     child: GestureDetector(
                       onTap: () async {
-                        // Cerrar sesión en Supabase y volver al login
                         await Supabase.instance.client.auth.signOut();
                         if (mounted) {
                           GlobalHelper.navigateToPageRemove(context, '/login');
@@ -162,7 +160,6 @@ class _ButtonNavigationWidgetState extends State<ButtonNavigationWidget> {
               ),
             ),
 
-            // --- BOTÓN PRINCIPAL (El plato central que activa todo) ---
             AnimatedPositioned(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
